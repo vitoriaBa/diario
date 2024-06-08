@@ -3,22 +3,23 @@ import { useState } from 'react';
 import { StyleSheet,TextInput, Text, View, TouchableOpacity,Alert} from 'react-native';
  import { Firebase } from '../Firebase';
  import { firestore } from "../Firebase"; 
-import { collection, addDoc } from "firebase/firestore"; 
+ import { getFirestore, collection, addDoc } from 'firebase/firestore';
+ 
 
 export default function Cadastrar({navigation}) {
    
-   const [titulo , setTitulo] = useState(null);
-   const [texto , setTexto] = useState(null);
-   const [data, setData] = useState(null);
-   const [local, setLocal] = useState(null);
+   const [filme , setFilme] = useState(null);
+   const [categoria , setCategoria] = useState(null);
+   const [nota, setNota] = useState(null);
+   const [opiniao, setOpiniao] = useState(null);
 
-async function addDiario() {
+async function addfilme() {
     try {
-        const docRef = await addDoc(collection(firestore, 'diario'), {
-            titulo:titulo,
-            texto:texto,
-            data:data,
-            local:local
+        const docRef = await addDoc(collection(firestore, 'avaliacao'), {
+          filme:filme,
+            categoria:categoria,
+            nota:nota,
+            opiniao:opiniao
         });
         console.log("Cadastrado com ID: ", docRef.id);
         Alert.alert("Cadastro", "Registros cadastros com sucesso")
@@ -32,18 +33,18 @@ return(
 <View style={styles.container}>
  <View>
                                                
- <Text style={estilo.titulo}> Registre no Seu Diário</Text>
+ <Text style={styles.titulo}>filme</Text>
       </View>
-      <TextInput autoCapitalize = 'words' style={estilo.input} placeholder="Digite o Título" onChangeText={setTitulo} value={titulo}/>
-      <TextInput style={estilo.input} placeholder="Digite o lindo dia" onChangeText={setTexto} value={texto}/>
-      <TextInput style={estilo.input} placeholder="Digite a data" onChangeText={setData} value={data}/>
-      <TextInput style={estilo.input} placeholder="Digite o seu local agora" onChangeText={setLocal} value={local}/>
+      <TextInput style={styles.input} placeholder="filme" onChangeText={setFilme} value={filme}/>
+      <TextInput style={styles.input} placeholder="categoria" onChangeText={setCategoria} value={categoria}/>
+      <TextInput style={styles.input} placeholder="nota" onChangeText={setNota} value={nota}/>
+      <TextInput style={styles.input} placeholder="opiniao" onChangeText={setOpiniao} value={opiniao}/>
       <TouchableOpacity
-        style={estilo.btnenviar}
+        style={styles.btnenviar}
         onPress={() => {
-          addDiario();
+          addfilme();
         }}>
-        <Text style={estilo.btntxtenviar}> Enviar </Text>
+        <Text style={styles.btntxtenviar}> Enviar </Text>
       </TouchableOpacity>
     </View>
 );
