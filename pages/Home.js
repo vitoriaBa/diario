@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     padding:50,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'#91C8E4',
+    backgroundColor:'#820300',
   },
   image: {
     flex: 1,
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width:300,
     height:390,
-    backgroundColor:'#4682A9',
+    backgroundColor:'#B80000',
   }
 });
+//paleta 5F8670 FF9800 B80000  820300
