@@ -45,7 +45,7 @@ export default function Home({navigation}) {
       data={cine}
       renderItem={({item})=>{
       return(
-<View style={styles.estiloDiario}>
+<View style={styles.Items}>
 <TouchableOpacity onPress={()=>navigation.navigate("Alterar",{
   id: item.id,
   filme: item.filme,
@@ -54,7 +54,7 @@ export default function Home({navigation}) {
   opiniao: item.opiniao
 } )}>
   
-  <View style={styles.Items}>
+  <View>
  <Text style={styles.txt}>{item.filme}</Text>
  <Text style={styles.txt}>{item.nota}</Text>
  <Text style={styles.txt}>{item.categoria}</Text>
@@ -62,21 +62,28 @@ export default function Home({navigation}) {
   </View>
 </TouchableOpacity>
 
+<View style={styles.inline}>
 <TouchableOpacity onPress={()=>{deleteCine(item.id)}}>
-<Text>Deletar</Text>
+<Text style={styles.deletar}>Deletar</Text>
 </TouchableOpacity>
+</View>
 </View>
 
 
       );
       }}
       />
-
+<View style={styles.inline}>
 <TouchableOpacity style={styles.estilobutao} onPress={()=> navigation.navigate('Cadastrar')}>
 <Text style={styles.titulo}>Nova avaliação</Text>
 
 </TouchableOpacity>
-      
+
+<TouchableOpacity style={styles.estilobutao} onPress={()=> navigation.navigate('Filmes')}>
+<Text style={styles.titulo}>Filmes</Text>
+
+</TouchableOpacity>
+   </View>   
      <StatusBar style="auto" />
     </View>
   
@@ -86,7 +93,7 @@ export default function Home({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding:50,
+    padding:10,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor:'#820300',
@@ -102,12 +109,18 @@ const styles = StyleSheet.create({
     fontWeight:'300',
    color:'#F6F4EB',
   },
+  deletar:{
+    fontSize:20,
+    fontWeight:'300',
+   color:'#F6F4EB',
+   marginRight:50,
+  },
   titulo:{
-    fontWeight:'100',
-    marginLeft:50,
-    marginRight:50,
-    margin:10,
-    fontSize:40,
+    fontWeight:'bold',
+   // marginLeft:50,
+   // marginRight:50,
+    //margin:10,
+    fontSize:20,
     color:'#F6F4EB',
   },
   Items:{
@@ -115,8 +128,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width:300,
-    height:390,
+    margin:20,
+    height:200,
     backgroundColor:'#B80000',
+  },
+  inline:{
+    flexDirection:'row-reverse',
+    justifyContent:'space-between',
+    width:350,
+  },
+  estilobutao:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#FF9800',
+    width:150,
+    height:50,
+    borderRadius:10,
+   // marginLeft:50,
   }
 });
 //paleta 5F8670 FF9800 B80000  820300

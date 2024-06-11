@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { StyleSheet,TextInput, Text, View, TouchableOpacity,Alert} from 'react-native';
  import { Firebase } from '../Firebase';
- import { firestore } from "../Firebase"; 
+ import { fire } from "../Firebase"; 
  import { getFirestore, collection, addDoc } from 'firebase/firestore';
  
 
@@ -15,7 +15,7 @@ export default function Cadastrar({navigation}) {
 
 async function addfilme() {
     try {
-        const docRef = await addDoc(collection(firestore, 'avaliacao'), {
+        const docRef = await addDoc(collection(fire, 'avaliacao'), {
           filme:filme,
             categoria:categoria,
             nota:nota,
@@ -44,19 +44,20 @@ return(
         onPress={() => {
           addfilme();
         }}>
-        <Text style={styles.btntxtenviar}> Enviar </Text>
+        <Text style={styles.txt}> Enviar </Text>
       </TouchableOpacity>
     </View>
 );
-
+//paleta #5F8670 #FF9800 #B80000  #820300
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin:20,
+    //margin:20,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor:'#B80000',
   },
   image: {
     flex: 1,
@@ -64,17 +65,38 @@ const styles = StyleSheet.create({
 
   },
   txt:{
-    marginTop:10,
+   /// marginTop:10,
     fontSize:20,
     fontWeight:'300',
+    fontWeight:'bold',
    color:'#FFF6E0',
   },
   titulo:{
     fontWeight:'100',
     marginLeft:50,
     marginRight:50,
+    fontWeight:'bold',
     margin:10,
     fontSize:40,
     color:'#FFF6E0',
   },
+  input:{
+    backgroundColor:'#820300',
+    width:300,
+    borderRadius:10,
+    marginBottom:20,
+    height:40,
+    padding:5,
+    fontWeight:'bold',
+    color:'#FFF6E0',
+  },
+  btnenviar:
+  {
+    borderRadius:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:'#FF9800',
+    width:200,
+    height:40,
+  }
 });
